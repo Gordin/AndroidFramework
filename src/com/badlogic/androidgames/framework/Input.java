@@ -60,6 +60,16 @@ public interface Input {
             builder.append(y);
             return builder.toString();
         }
+        
+        public static Pool<TouchEvent> getPool() {
+            class TouchEventFactory implements PoolObjectFactory<TouchEvent> {
+                public TouchEvent createObject() {
+                    return new TouchEvent();
+                }
+            }
+            TouchEventFactory factory = new TouchEventFactory();
+            return new Pool<TouchEvent>(factory, 100);
+        }
     }
 
     public boolean isKeyPressed(int keyCode);
