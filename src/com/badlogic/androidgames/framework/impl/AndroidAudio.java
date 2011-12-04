@@ -15,7 +15,7 @@ import com.badlogic.androidgames.framework.Sound;
 public class AndroidAudio implements Audio {
     AssetManager assets;
     SoundPool soundPool;
-    protected AndroidAudio instance;
+    protected static AndroidAudio instance;
 
     private AndroidAudio(Activity activity) {
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -23,7 +23,7 @@ public class AndroidAudio implements Audio {
         this.soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 0);
     }
 
-    public AndroidAudio get(Activity activity) {
+    public static AndroidAudio get(Activity activity) {
         if (instance == null) {
             instance = new AndroidAudio(activity);
         }
